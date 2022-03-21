@@ -1,0 +1,148 @@
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+:focus,
+:active {
+	outline: none;
+}
+a:focus,
+a:active {
+	outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+	display: block;
+}
+input,
+button,
+textarea,
+select {
+	font-family: inherit;
+}
+
+input::-ms-clear {
+	display: none;
+}
+button {
+	cursor: pointer;
+}
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+a,
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+ul li {
+	list-style: none;
+}
+img {
+	vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: inherit;
+	font-weight: 400;
+}
+/*==============================================================================================*/
+
+body {
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	background: #353333;
+	color: #fff;
+	font-size: 25px;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+/*==============================================================================================*/
+
+.sheet {
+	max-width: 800px;
+	width: 100%;
+}
+
+.sheet__row {
+	display: flex;
+}
+
+.sheet__titles {
+	display: flex;
+	width: 100%;
+}
+
+.sheet__title:nth-child(1) {
+	flex: 1 1 10%;
+}
+
+.sheet__title {
+	text-align: center;
+	flex: 1 1 30%;
+	padding: 10px;
+}
+
+/*==============================================================================================*/
+
+.sheet__cell {
+	flex: 1 1 30%;
+	padding: 10px;
+	border: 1px solid #fff;
+}
+.sheet__id {
+	flex: 1 1 10%;
+}
+
+/*==============================================================================================*/
+
+.sheet__buttons {
+	display: flex;
+	flex: 1 0 30%;
+}
+
+.sheet__btn {
+	color: inherit;
+	font-size: inherit;
+	background: transparent;
+}
+
+.sheet__cell input {
+	color: inherit;
+	font-size: inherit;
+	background: transparent;
+	width: 100%;
+}
+.sheet__btn_edit {
+	display: none;
+}
+
+.sheet__row_1.saved .sheet__btn_edit,
+.sheet__row_2.saved .sheet__btn_edit,
+.sheet__row_3.saved .sheet__btn_edit {
+	display: block;
+}
