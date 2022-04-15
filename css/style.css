@@ -77,72 +77,101 @@ body {
 	flex-direction: column;
 	min-height: 100vh;
 	align-items: center;
-	justify-content: center;
 	overflow: hidden;
 }
 
 /*==============================================================================================*/
 
-.sheet {
-	max-width: 800px;
+.table {
 	width: 100%;
 }
-
-.sheet__row {
+.table__row {
 	display: flex;
 }
-
-.sheet__titles {
-	display: flex;
-	width: 100%;
-}
-
-.sheet__title:nth-child(1) {
-	flex: 1 1 10%;
-}
-
-.sheet__title {
-	text-align: center;
-	flex: 1 1 30%;
-	padding: 10px;
-}
-
-/*==============================================================================================*/
-
-.sheet__cell {
-	flex: 1 1 30%;
-	padding: 10px;
+.table__column {
+	flex: 2 1;
 	border: 1px solid #fff;
 }
-.sheet__id {
-	flex: 1 1 10%;
-}
 
-/*==============================================================================================*/
-
-.sheet__buttons {
+.table__column_count {
+	flex: 0 1 50px;
 	display: flex;
-	flex: 1 0 30%;
+	justify-content: center;
+	align-items: center;
 }
-
-.sheet__btn {
-	color: inherit;
-	font-size: inherit;
+.table__input {
+	padding: 10px;
+	font-size: 20px;
+	color: #fff;
+	font-weight: 700;
 	background: transparent;
-}
-
-.sheet__cell input {
-	color: inherit;
-	font-size: inherit;
-	background: transparent;
+	display: inline-block;
 	width: 100%;
-}
-.sheet__btn_edit {
-	display: none;
+	height: 100%;
+	line-height: 150%;
 }
 
-.sheet__row_1.saved .sheet__btn_edit,
-.sheet__row_2.saved .sheet__btn_edit,
-.sheet__row_3.saved .sheet__btn_edit {
-	display: block;
+.table__button svg {
+	fill: #fff;
+	width: 25px;
+	height: 25px;
+	transition: all 0.2s ease 0s;
+}
+
+.table__column_buttons {
+	display: flex;
+	flex: 1 1;
+}
+.table__button {
+	flex-grow: 1;
+	color: white;
+	font-size: 19px;
+	padding: 10px;
+	transition: all 0.2s ease 0s;
+}
+
+/*------------------------------------*/
+
+.table__button_save {
+	background: #37a137;
+}
+.table__button_reset {
+	background: #861919;
+}
+.table__button_edit {
+	background: #69440d;
+}
+
+.table__button_save:hover svg {
+	transform: scale(1.1);
+}
+.table__button_reset:hover svg {
+	transform: rotate(-90deg);
+}
+.table__row.saved .table__button_edit:hover svg {
+	transform: translate(-2px, 2px);
+}
+
+.table__button_save:hover {
+	background: #4ad14a;
+}
+.table__button_reset:hover {
+	background: #aa1b1b;
+}
+.table__row.saved .table__button_edit:hover {
+	background: #f09814;
+}
+
+/*------------------------------------*/
+
+.table__row.saved .table__button_edit {
+	background: #db8708;
+}
+
+.table__row.saved .table__button_save {
+	background: #1a521a;
+}
+
+.table__row.saved .table__button_save:hover svg {
+	transform: scale(1);
 }

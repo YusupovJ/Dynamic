@@ -1,62 +1,59 @@
-const row = document.querySelectorAll(".sheet__row");
+const rows = document.querySelectorAll(".table__row");
 
-if (row.length > 0) {
-	row.forEach((el) => {
-		el.addEventListener("click", (e) => {
-			if (e.target.closest(".sheet__buttons")) {
-				const element = e.target;
-				// текущий индекс
-				let elementActiveIndex = element.classList[element.classList.length - 1].split("").pop();
+if (rows.length > 0) {
+	for (let i = 0; i < rows.length; i++) {
+		const row = rows[i];
+		const buttons = row.querySelectorAll(".table__button");
+		const inputs = row.getElementsByClassName("table__input");
 
-				// получаем текущие поля ввода
-				const nameElement = document.querySelector(`.sheet__name_${elementActiveIndex}`);
-				const surnameElement = document.querySelector(`.sheet__surname_${elementActiveIndex}`);
-				// если мы нажали на кнопку сохранения
-				if (e.target.closest(".sheet__btn_save")) {
-					if (nameElement.querySelector("input") && surnameElement.querySelector("input")) {
-						// значения полей ввода
-						const nameValue = nameElement.querySelector("input").value;
-						const surnameValue = surnameElement.querySelector("input").value;
+		let buttonTypes = {
+			save: row.querySelector(".table__button_save"),
+			reset: row.querySelector(".table__button_reset"),
+			edit: row.querySelector(".table__button_edit"),
+		};
 
-						// текст который будем добавлять
-						const innerNameText = `<p class="sheet__text">${nameValue}</p>`;
-						const innerSurnameText = `<p class="sheet__text">${surnameValue}</p>`;
+		buttons.forEach((button) => {
+			button.addEventListener("click", (e) => {
+				if (e.target.closest("." + buttonTypes.save.classList[1])) {
+					save();
+				} else if (e.target.closest("." + buttonTypes.reset.classList[1])) {
+					reset();
+				} else if (e.target.closest("." + buttonTypes.edit.classList[1])) {
+					edit();
+				}
+				e.preventDefault();
+			});
+		});
 
-						// удаляем поля ввода
-						nameElement.querySelector("input").remove();
-						surnameElement.querySelector("input").remove();
+		function save() {
+			for (let i = 0; i < inputs.length; i++) {
+				const input = inputs[i];
 
-						// добавляем текст
-						nameElement.innerHTML = innerNameText;
-						surnameElement.innerHTML = innerSurnameText;
-					}
-
-					document.querySelector(`.sheet__row_${elementActiveIndex}`).classList.add("saved");
-
-					// если нажали на кнопку очищения
-				} else if (e.target.closest(".sheet__btn_reset")) {
-					// получаем текущую кнопку
-					const resetText = document.querySelectorAll(`.sheet__row_${elementActiveIndex} .sheet__text`);
-					// очищаем текст
-					resetText.forEach((element) => {
-						element.innerHTML = "";
-					});
-					// если нажали на кнопку изменить
-				} else if (e.target.closest(".sheet__btn_edit")) {
-					// получаем текущую кнопку
-					const editActiveButton = document.querySelector(`.sheet__btn_edit_${elementActiveIndex}`);
-
-					// получаем текст
-					const nameValue = editActiveButton.closest(".sheet__row").querySelector(".sheet__name .sheet__text").innerHTML;
-					const surnameValue = editActiveButton.closest(".sheet__row").querySelector(".sheet__surname .sheet__text").innerHTML;
-
-					// добавляем текст
-					nameElement.innerHTML = `<input type="text" value="${nameValue}">`;
-					surnameElement.innerHTML = `<input type="text" value="${surnameValue}">`;
-
-					document.querySelector(`.sheet__row_${elementActiveIndex}`).classList.remove("saved");
+				let inputValue = input.value;
+				if (inputValue && !input.classList.contains("saved")) {
+					const text = `<i class="${input.className}">${inputValue}</i>`;
+					input.outerHTML = text;
+					row.classList.add("saved");
 				}
 			}
-		});
-	});
+		}
+		function reset() {
+			for (let i = 0; i < inputs.length; i++) {
+				const input = inputs[i];
+				input.value = "";
+				input.innerHTML = "";
+			}
+		}
+		function edit() {
+			if (row.classList.contains("saved")) {
+				for (let i = 0; i < inputs.length; i++) {
+					const input = inputs[i];
+					let inputValue = input.innerHTML;
+					const text = `<input autocomplete="off" class="${input.className}" type="text" value="${inputValue}">`;
+					input.outerHTML = text;
+					row.classList.remove("saved");
+				}
+			}
+		}
+	}
 }
