@@ -78,6 +78,7 @@ body {
 	min-height: 100vh;
 	align-items: center;
 	overflow: hidden;
+	padding: 15px;
 }
 
 /*==============================================================================================*/
@@ -89,7 +90,7 @@ body {
 	display: flex;
 }
 .table__column {
-	flex: 2 1;
+	flex: 1 1;
 	border: 1px solid #fff;
 }
 
@@ -118,15 +119,16 @@ body {
 	transition: all 0.2s ease 0s;
 }
 
-.table__column_buttons {
+.table__buttons {
 	display: flex;
-	flex: 1 1;
+	border: 1px solid #fff;
 }
+
 .table__button {
-	flex-grow: 1;
+	flex: 1 0 33.333%;
 	color: white;
 	font-size: 19px;
-	padding: 10px;
+	padding: 10px 30px;
 	transition: all 0.2s ease 0s;
 }
 
@@ -136,7 +138,7 @@ body {
 	background: #37a137;
 }
 .table__button_reset {
-	background: #861919;
+	background: #bd2424;
 }
 .table__button_edit {
 	background: #69440d;
@@ -156,7 +158,7 @@ body {
 	background: #4ad14a;
 }
 .table__button_reset:hover {
-	background: #aa1b1b;
+	background: #d62323;
 }
 .table__row.saved .table__button_edit:hover {
 	background: #f09814;
