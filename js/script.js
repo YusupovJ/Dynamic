@@ -41,7 +41,7 @@ if (rows.length > 0) {
 				let inputValue = input.value;
 
 				// Если в инпуте есть значение и ряд не содержит класс saved
-				if (inputValue && !row.classList.contains("saved")) {
+				if (inputValue) {
 					// Заменяем элемент
 					const text = `<i class="${input.className}">${inputValue}</i>`;
 					input.outerHTML = text;
